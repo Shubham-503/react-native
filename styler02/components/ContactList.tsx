@@ -1,7 +1,14 @@
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 
-export default function ContactList() {
+export default function ContactList({navigation}) {
   const contacts = [
     {
       uid: 1,
@@ -33,18 +40,24 @@ export default function ContactList() {
       <Text style={styles.headingText}>Contact List</Text>
       <ScrollView style={styles.container} scrollEnabled={false}>
         {contacts.map(({uid, name, status, imageUrl}) => (
-          <View key={uid} style={styles.userCard}>
-            <Image
-              source={{
-                uri: imageUrl,
-              }}
-              style={styles.userImage}
-            />
-            <View>
-              <Text style={styles.userName}>{name}</Text>
-              <Text style={styles.userStatus}>{status}</Text>
+          <TouchableOpacity  key={uid}
+            onPress={() => {
+              /* 1. Navigate to the Details route with params */
+              navigation.navigate('Contacts', {uid, name, status, imageUrl});
+            }}>
+            <View style={styles.userCard}>
+              <Image
+                source={{
+                  uri: imageUrl,
+                }}
+                style={styles.userImage}
+              />
+              <View>
+                <Text style={styles.userName}>{name}</Text>
+                <Text style={styles.userStatus}>{status}</Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
         {contacts.map(({uid, name, status, imageUrl}) => (
           <View key={uid} style={styles.userCard}>
