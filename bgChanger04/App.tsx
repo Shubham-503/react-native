@@ -33,8 +33,12 @@ function App(): JSX.Element {
       {/* <View style={[styles.container, backgroundColor: randomBackgroundColor]} > */}
       <View
         style={[styles.container, {backgroundColor: randomBackgroundColor}]}>
-        <View style={[styles.circle, {backgroundColor: circleColor}]} />
-        <View style={{width: 100, height: 100, backgroundColor: squareColor}} />
+        <View>
+          <View style={[styles.circle, {backgroundColor: circleColor}]} />
+          <View
+            style={{width: 100, height: 100, backgroundColor: squareColor}}
+          />
+        </View>
         <TouchableOpacity onPress={generateColor}>
           <View style={styles.actionBtn}>
             <Text style={styles.actionBtnTxt}>Press Me!</Text>
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   actionBtn: {
     borderRadius: 12,
